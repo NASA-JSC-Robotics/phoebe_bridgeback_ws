@@ -1,18 +1,27 @@
-# Sample Containerized Workspace
+# Phoebe Bridgeback Workspace
 
-This empty workspace can be used a starting point for a Docker-enabled VCS or Git Submodules workspace.
-The contents of the `src` directory should be treated similarly to a "normal" ROS workspace.
-That is, source code can be imported and added as needed to `src/`, then be built and run inside of an isolated, ROS enabled environment.
+Docker enabled ROS 2 workspace for building and running applications with the Phoebe Bridgeback robot.
 
 ## Quick Development Setup
 
 1) [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
     - Don't worry about Docker Desktop
     - For Ubuntu recommend using the [utility script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
-2) Fork or copy the contents of this repository as needed
-3) Setup your source code for the `src/` directory
-    - Either with git submodules (`git submodule add ...`)
-    - Or with a repos file and vcs tool  (`vcs import ...`)
+2) Install git `sudo apt install git`
+3) Clone this repo with submodules
+
+    ```bash
+    git clone --recursive git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback_ws.git
+    cd phoebe_bridgeback_ws
+    ```
+
+    Or to update submodules if you do not do a recursive clone,
+
+    ```bash
+    cd phoebe_bridgeback_ws
+    git submodule update --init
+    ```
+
 4) Set your user information for the project build
     - We recommend just putting this in your `~/.bashrc`:
 

@@ -1,0 +1,3 @@
+[submodule "src/phoebe_bridgeback"]
+	path = src/phoebe_bridgeback
+	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback.git
