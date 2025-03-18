@@ -1,7 +1,5 @@
-name: er4_development
 services:
   dev:
-    container_name: er4_dev
     env_file: .env
     build:
       context: .
@@ -52,6 +50,7 @@ services:
       # For rendering graphical commands inside the container
       - x11_sock:/tmp/.X11-unix
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - $HOME/.Xauthority:/home/${HOST_USERNAME:-er4-user}/.Xauthority:rw
       # Uncomment to allow access to host hardware
       # NOTE: This is quite dangerous so be careful with these containers
       # - /dev:/dev
