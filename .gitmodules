@@ -11,3 +11,11 @@
 [submodule "src/ewellix_lift_kit"]
 	path = src/ewellix_lift_kit
 	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/ewellix_lift_kit.git
+[submodule "src/dextivr_hande"]
+	path = src/dextivr_hande
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/dextivr_hande.git
+	branch = humble-devel
+[submodule "src/ros2_robotiq_gripper"]
+	path = src/ros2_robotiq_gripper
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/ros2_robotiq_gripper.git
+	branch = humble-devel
