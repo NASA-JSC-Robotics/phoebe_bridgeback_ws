@@ -1,3 +1,24 @@
 [submodule "src/phoebe_bridgeback"]
 	path = src/phoebe_bridgeback
 	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback.git
+[submodule "src/ewellix_lift"]
+	path = src/ewellix_lift
+	url = https://github.com/clearpathrobotics/ewellix_lift.git
+[submodule "src/serial"]
+	path = src/serial
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/serial.git
+	branch = humble
+[submodule "src/ewellix_lift_kit"]
+	path = src/ewellix_lift_kit
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/ewellix_lift_kit.git
+[submodule "src/dextivr_hande"]
+	path = src/dextivr_hande
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/dextivr_hande.git
+	branch = humble-devel
+[submodule "src/ros2_robotiq_gripper"]
+	path = src/ros2_robotiq_gripper
+	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/ros2_robotiq_gripper.git
+	branch = humble-devel
+[submodule "phoebe_system_config"]
+	path = phoebe_system_config
+	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe-system-config.git

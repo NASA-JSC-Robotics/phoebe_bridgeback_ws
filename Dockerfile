@@ -51,6 +51,12 @@ RUN mkdir src build install log
 # is slow or onerous.
 COPY src/ src/
 
+# Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
+RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
+    -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
+    wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
+    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu jammy main" > /etc/apt/sources.list.d/clearpath-latest.list'
+
 # Install rosdeps
 # Init is unnecessary if using the ROS base image
 # RUN sudo rosdep init && rosdep update --rosdistro ${ROS_DISTRO}

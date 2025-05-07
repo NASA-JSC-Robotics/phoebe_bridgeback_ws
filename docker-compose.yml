@@ -53,5 +53,5 @@ services:
       - $HOME/.Xauthority:/home/${HOST_USERNAME:-er4-user}/.Xauthority:rw
       # Uncomment to allow access to host hardware
       # NOTE: This is quite dangerous so be careful with these containers
-      # - /dev:/dev
+      - /dev:/dev
     command: sleep infinity

@@ -2,6 +2,7 @@
 build/*
 install/*
 log/*
+.ccache/*
 
 # VS code content
 .vscode/

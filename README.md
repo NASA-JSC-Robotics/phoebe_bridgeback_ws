@@ -11,7 +11,7 @@ Docker enabled ROS 2 workspace for building and running applications with the Ph
 3) Clone this repo with submodules
 
     ```bash
-    git clone --recursive git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback_ws.git
+    git clone --recursive git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback_ws.git -b humble-feature/full-urdf
     cd phoebe_bridgeback_ws
     ```
 
@@ -53,6 +53,19 @@ docker compose exec dev bash
 
 Once you're attached to the container, you can use it as a regular colcon workspace.
 The contents of the `src/` directory will be mounted into `/home/er4-user/ws/src`.
+
+To run the things, do the following
+
+```bash
+# build the ROS workspace
+colcon build
+
+# Start Phoebe ros2 control software with mock_hardware
+ros2 launch phoebe_deploy control.launch.py platform:=mock_hardware
+
+# start moveit with rviz!
+ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
+```
 
 ### Other Things to Note
 
