@@ -19,3 +19,6 @@
 	path = src/ros2_robotiq_gripper
 	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/ros2_robotiq_gripper.git
 	branch = humble-devel
+[submodule "phoebe_system_config"]
+	path = phoebe_system_config
+	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe-system-config.git
