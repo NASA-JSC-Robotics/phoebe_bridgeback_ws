@@ -1,12 +1,9 @@
 services:
-  dev:
+  base:
     env_file: .env
     build:
       context: .
       dockerfile: Dockerfile
-      target: er4-dev
-      tags:
-        - er4-dev:latest
       args:
         - USERNAME=er4-user  # Changing username requires updating workspace mounts below
         - USER_UID=${USER_UID:-1000}
@@ -54,4 +51,19 @@ services:
       # Uncomment to allow access to host hardware
       # NOTE: This is quite dangerous so be careful with these containers
       - /dev:/dev
+  dev:
+    extends:
+      service: base
+    build:
+      target: er4-dev
+      tags:
+        - er4-dev:latest
     command: sleep infinity
+  transport:
+    extends:
+      service: base
+    build:
+      target: er4-dev-source
+      tags:
+        - er4-dev-source:latest
+    command: ros2 launch phoebe_deploy transport.launch.py
