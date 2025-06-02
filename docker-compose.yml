@@ -16,7 +16,6 @@ services:
     tty: true
     privileged: true
     network_mode: host
-    tmpfs: /tmp,/run,/run/lock
     # Ensures the UR drivers have access to RT priority
     ulimits:
       rtprio: 99
