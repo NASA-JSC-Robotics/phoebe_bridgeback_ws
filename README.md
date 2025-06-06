@@ -72,6 +72,9 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
 This ensure artifacts are persisted even when restarting or recreating the container.
 
+- The `.bash` folder gets mounted into your workspace, and the environment variable `HISTFILE` is set in the docker compose file.
+This points the bash to keep the history in this folder, which will persist between docker container sessions so that your history is kept.
+
 - Your host's DDS configuration (either cyclone or fastrtps) will be mounted into the image if set in your environment.
 For more information refer to the [compose specification](docker-compose.yaml).
 

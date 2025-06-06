@@ -49,6 +49,7 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
         /home/${USERNAME}/.ccache \
         /home/${USERNAME}/.colcon \
         /home/${USERNAME}/.ros \
+        /home/${USERNAME}/.bash \
         ${ER4_WS}
 
 # Setup the install directory and copy the workspace to it.

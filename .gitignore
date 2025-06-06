@@ -4,5 +4,8 @@ install/*
 log/*
 .ccache/*
 
+# bash history
+.bash/*
+
 # VS code content
 .vscode/
