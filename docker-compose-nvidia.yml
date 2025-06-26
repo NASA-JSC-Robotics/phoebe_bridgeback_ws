@@ -1,0 +1,14 @@
+services:
+  dev:
+    extends:
+      file: docker-compose.yml
+      service: dev
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - TEST2=test2
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
