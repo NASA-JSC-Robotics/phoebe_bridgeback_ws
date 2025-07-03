@@ -19,6 +19,9 @@ services:
     # Ensures the UR drivers have access to RT priority
     ulimits:
       rtprio: 99
+      memlock:
+          soft: -1
+          hard: -1
     environment:
       # Pass the ROS_DOMAIN_ID from the host, if available, otherwise we default to 1 to avoid spamming networks
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-1}

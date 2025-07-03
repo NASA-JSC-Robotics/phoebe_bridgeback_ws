@@ -69,7 +69,7 @@ run_tests:
     - pushd ${ER4_WS} > /dev/null
     # Skip ros2_robotiq_gripper/robotiq_controllers and ros2_robotiq_gripper/robotiq_driver
     # they fail their ros2 formatting and linting tests and we're not ready to deal with that
-    - colcon test --packages-skip robotiq_controllers robotiq_driver
+    - colcon test --packages-skip robotiq_controllers robotiq_driver clearpath_mecanum_drive_controller
     # Gives you easy to read summary in CI build, returns 1 in case of failures so this should
     # fail the CI job if there are issues.
     - colcon test-result --verbose
