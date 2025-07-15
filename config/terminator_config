@@ -1,0 +1,68 @@
+[global_config]
+[keybindings]
+  broadcast_off = <Alt>o
+  broadcast_group = <Alt>g
+  broadcast_all = <Alt>a
+[profiles]
+  [[default]]
+    background_color = "#00042a"
+    cursor_color = "#aaaaaa"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:0
+      maximised = True
+      fullscreen = False
+      size = 2560, 1403
+      title = docker_terminator
+      last_active_term = f6216c28-9e14-43ef-9bab-2c89ec8c0dd8
+      last_active_window = True
+    [[[child1]]]
+      type = HPaned
+      parent = child0
+      order = 0
+      position = 1276
+      ratio = 0.5
+    [[[child2]]]
+      type = VPaned
+      parent = child1
+      order = 0
+      position = 699
+      ratio = 0.5
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = default
+      uuid = 3ed14a9a-904a-49ea-853f-771cfcbded9d
+    [[[terminal4]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = default
+      uuid = 5d1829d5-eb91-4181-b02d-7a164260ceb9
+    [[[child5]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 699
+      ratio = 0.5
+    [[[terminal6]]]
+      type = Terminal
+      parent = child5
+      order = 0
+      profile = default
+      uuid = f6216c28-9e14-43ef-9bab-2c89ec8c0dd8
+      command = ""
+      directory = ""
+    [[[terminal7]]]
+      type = Terminal
+      parent = child5
+      order = 1
+      profile = default
+      uuid = 96f08e19-f38d-4c7c-9127-b20b2aaa8fae
+[plugins]

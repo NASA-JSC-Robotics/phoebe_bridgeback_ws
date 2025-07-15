@@ -95,14 +95,16 @@ RUN colcon metadata add default  \
     https://raw.githubusercontent.com/colcon/colcon-metadata-repository/master/index.yaml && \
     colcon metadata update || true
 
-COPY config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
-
 # Fix rosdep permissions and ensure sudo while we're at it
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     sudo apt update && \
     . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update --rosdistro ${ROS_DISTRO}
+
+# copy in configs for different features
+COPY --chown=${USERNAME}:${USERNAME} config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
+COPY --chown=${USERNAME}:${USERNAME} config/terminator_config /home/${USERNAME}/.config/terminator/config
 
 # Setup entrypoint and ensure it's added to ~/.bashrc
 COPY scripts/entrypoint.sh /entrypoint.sh
