@@ -64,13 +64,6 @@ RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro
     wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
     sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu jammy main" > /etc/apt/sources.list.d/clearpath-latest.list'
 
-# TODO: Remove this when clearpath's rosdistro updates.
-# For now navsat still shows as listed in https://packages.clearpathrobotics.com/stable/ubuntu/dists/jammy/main/binary-amd64/
-# but the package has been removed.
-RUN echo "Package: ros-humble-nmea-navsat-driver" > /etc/apt/preferences.d/navsat-fix && \
-    echo "Pin: origin packages.ros.org" >> /etc/apt/preferences.d/navsat-fix && \
-    echo "Pin-Priority: 1001" >> /etc/apt/preferences.d/navsat-fix
-
 # Install rosdeps
 # Init is unnecessary if using the ROS base image
 # RUN sudo rosdep init && rosdep update --rosdistro ${ROS_DISTRO}
