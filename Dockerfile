@@ -1,6 +1,18 @@
 # Set desired ROS distribution, this image currently only supports humble.
 ARG ROS_DISTRO=humble
 
+# This layer grabs package manifests from the src directory for preserving rosdep installs.
+# This can significantly speed up rebuilds for the base package when src contents have changed.
+FROM alpine:latest AS package-manifests
+
+# Copy in the src directory, then remove everything that isn't a manifest or an ignore file.
+COPY src/ /src/
+RUN find /src -type f ! -name "package.xml" ! -name "COLCON_IGNORE" -delete && \
+    find /src -type d -empty -delete
+
+# Throw away for an empty source directory
+RUN mkdir -p /src
+
 # Using the pre-compiled ROS images as the base.
 FROM ros:${ROS_DISTRO} AS er4-dev
 
@@ -56,7 +68,9 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
 WORKDIR  ${ER4_WS}
 RUN mkdir src build install log
-COPY src/ src/
+
+# Copy package manifests for installing rosdeps
+COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
 
 # Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
 RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
@@ -83,6 +97,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp
 
+# Copy in the remainder of the src directory
+COPY src/ src/
 RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 USER ${USERNAME}
