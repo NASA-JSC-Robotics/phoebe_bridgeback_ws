@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <profiles xmlns="http://www.eprosima.com">
+    <transport_descriptors>
+        <transport_descriptor>
+            <transport_id>CustomUdpTransport</transport_id>
+            <type>UDPv4</type>
+            <interfaceWhiteList>
+                <address>192.168.131.1</address>
+		<address>127.0.0.1</address>
+            </interfaceWhiteList>
+        </transport_descriptor>
+    </transport_descriptors>
+
     <participant profile_name="ros2_profile" is_default_profile="true">
         <rtps>
             <name>ros2_profile</name>
+            <userTransports>
+                <transport_id>CustomUdpTransport</transport_id>
+            </userTransports>
+            <useBuiltinTransports>false</useBuiltinTransports>
         </rtps>
     </participant>
 </profiles>
