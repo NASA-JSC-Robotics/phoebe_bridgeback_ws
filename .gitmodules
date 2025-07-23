@@ -25,3 +25,6 @@
 [submodule "src/clearpath_mecanum_drive_controller"]
 	path = src/clearpath_mecanum_drive_controller
 	url = https://github.com/clearpathrobotics/clearpath_mecanum_drive_controller.git
+[submodule "src/trac_ik"]
+	path = src/trac_ik
+	url = https://bitbucket.org/traclabs/trac_ik.git
