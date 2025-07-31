@@ -34,9 +34,6 @@
 [submodule "src/color_names"]
 	path = src/color_names
 	url = git@js-er-code.jsc.nasa.gov:np/color_names.git
-[submodule "src/dex_ivr_interfaces"]
-	path = src/dex_ivr_interfaces
-	url = git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git
 [submodule "src/drt_ur_gui"]
 	path = src/drt_ur_gui
 	url = git@js-er-code.jsc.nasa.gov:imetro/drt_ur_gui.git
