@@ -5,9 +5,17 @@
             <transport_id>CustomUdpTransport</transport_id>
             <type>UDPv4</type>
             <interfaceWhiteList>
-                <address>192.168.131.1</address>
-		<address>127.0.0.1</address>
+                <!-- <address>192.168.131.1</address> -->
+                <!-- <address>192.168.131.2</address> -->
+                <address>127.0.0.1</address>
             </interfaceWhiteList>
+        </transport_descriptor>
+
+        <transport_descriptor>
+            <transport_id>ShmTransport</transport_id>
+            <type>SHM</type>
+            <maxMessageSize>4048576</maxMessageSize>
+            <segment_size>16048576</segment_size>
         </transport_descriptor>
     </transport_descriptors>
 
@@ -15,9 +23,58 @@
         <rtps>
             <name>ros2_profile</name>
             <userTransports>
+                <!-- <transport_id>ShmTransport</transport_id> -->
                 <transport_id>CustomUdpTransport</transport_id>
             </userTransports>
             <useBuiltinTransports>false</useBuiltinTransports>
         </rtps>
     </participant>
+
+    <data_writer profile_name="default publisher profile" is_default_profile="true">
+        <qos>
+            <publishMode>
+                <kind>ASYNCHRONOUS</kind>
+            </publishMode>
+            <reliability>
+                <kind>BEST_EFFORT</kind>
+            </reliability>
+        </qos>
+        <historyMemoryPolicy>DYNAMIC_REUSABLE</historyMemoryPolicy>
+    </data_writer>
+
+    <!-- <data_writer profile_name="reliable CAN">
+        <topic>
+          <kind>NO_KEY</kind>
+          <name>/ridgeback/vcan0/tx</name>
+        </topic>
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+            <reliability>
+                <kind>RELIABLE</kind>
+            </reliability>
+        </qos>
+    </data_writer> -->
+        
+
+
+
+    <data_writer profile_name="RELIABILITY_QOS_POLICY" is_default_profile="true">
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+            <reliability>
+                <kind>RELIABLE</kind>
+            </reliability>
+        </qos>
+        <historyMemoryPolicy>DYNAMIC_REUSABLE</historyMemoryPolicy>
+    </data_writer>
+
+    <data_reader profile_name="default subscriber profile" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC_REUSABLE</historyMemoryPolicy>
+    </data_reader>
+
 </profiles>
+ 
