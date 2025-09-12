@@ -24,8 +24,8 @@
       type = Notebook
       parent = child0
       order = 0
-      labels = Core, Manip, Nav, Percep
-      last_active_term = 3ed14a9a-904a-49ea-853f-771cfcbded9d, 9b5cd2a9-f8f3-4770-b836-d27b58f0391b, e28d702b-3f15-441b-a981-55ea6d7cbd36, a8d9fe31-9f5b-405f-96ed-13b24a29697d
+      labels = Core, Manip, Nav, Percep, "CFS Commander "
+      last_active_term = 3ed14a9a-904a-49ea-853f-771cfcbded9d, 9b5cd2a9-f8f3-4770-b836-d27b58f0391b, e28d702b-3f15-441b-a981-55ea6d7cbd36, 47505e12-46f7-4d8c-b046-9951e423bc26, 53729d37-57d6-4c9b-8a6c-d2993f435107
       active_page = 0
     [[[child2]]]
       type = HPaned
@@ -37,186 +37,120 @@
       type = VPaned
       parent = child2
       order = 0
-      position = 680
-      ratio = 0.5003679175864606
-    [[[child4]]]
-      type = VPaned
-      parent = child3
-      order = 0
-      position = 338
-      ratio = 0.5007407407407407
-    [[[terminal5]]]
+      position = 681
+      ratio = 0.5011037527593819
+    [[[terminal4]]]
       type = Terminal
-      parent = child4
+      parent = child3
       order = 0
       profile = default
       uuid = 3ed14a9a-904a-49ea-853f-771cfcbded9d
-    [[[terminal6]]]
+    [[[terminal5]]]
       type = Terminal
-      parent = child4
+      parent = child3
       order = 1
       profile = default
       uuid = eeeba86c-a9bd-42fb-8d3e-4e7ecacaceb7
-    [[[child7]]]
-      type = VPaned
-      parent = child3
-      order = 1
-      position = 337
-      ratio = 0.5
-    [[[terminal8]]]
-      type = Terminal
-      parent = child7
-      order = 0
-      profile = default
-      uuid = 5d1829d5-eb91-4181-b02d-7a164260ceb9
-    [[[terminal9]]]
-      type = Terminal
-      parent = child7
-      order = 1
-      profile = default
-      uuid = 36a757a8-54b0-47e1-8d7d-5853fe774cf7
-    [[[child10]]]
+    [[[child6]]]
       type = VPaned
       parent = child2
       order = 1
       position = 680
       ratio = 0.5003679175864606
-    [[[child11]]]
-      type = VPaned
-      parent = child10
-      order = 0
-      position = 338
-      ratio = 0.5007407407407407
-    [[[terminal12]]]
+    [[[terminal7]]]
       type = Terminal
-      parent = child11
+      parent = child6
       order = 0
       profile = default
       uuid = f6216c28-9e14-43ef-9bab-2c89ec8c0dd8
-    [[[terminal13]]]
+    [[[terminal8]]]
       type = Terminal
-      parent = child11
+      parent = child6
       order = 1
       profile = default
       uuid = d48a6d2b-ba79-4eda-a6ec-d20ab7bea85c
-    [[[child14]]]
-      type = VPaned
-      parent = child10
-      order = 1
-      position = 337
-      ratio = 0.5
-    [[[terminal15]]]
-      type = Terminal
-      parent = child14
-      order = 0
-      profile = default
-      uuid = 96f08e19-f38d-4c7c-9127-b20b2aaa8fae
-    [[[terminal16]]]
-      type = Terminal
-      parent = child14
-      order = 1
-      profile = default
-      uuid = 24ae39df-09f7-4cbe-8e1b-1b6552240b60
-    [[[child17]]]
+    [[[child9]]]
       type = HPaned
       parent = child1
       order = 1
       position = 1276
       ratio = 0.49980415197806505
-    [[[child18]]]
-      type = VPaned
-      parent = child17
-      order = 0
-      position = 680
-      ratio = 0.5003679175864606
-    [[[terminal19]]]
+    [[[terminal10]]]
       type = Terminal
-      parent = child18
+      parent = child9
       order = 0
       profile = default
       uuid = b23738d1-3508-4eaf-8ad7-80bb5b113a83
-    [[[terminal20]]]
+    [[[terminal11]]]
       type = Terminal
-      parent = child18
-      order = 1
-      profile = default
-      uuid = 024e7fb1-0cf6-45da-bec4-d2e1a7c13edf
-    [[[child21]]]
-      type = VPaned
-      parent = child17
-      order = 1
-      position = 680
-      ratio = 0.5003679175864606
-    [[[terminal22]]]
-      type = Terminal
-      parent = child21
-      order = 0
-      profile = default
-      uuid = d352704e-1eea-44d3-9daa-530128f4aa2c
-    [[[terminal23]]]
-      type = Terminal
-      parent = child21
+      parent = child9
       order = 1
       profile = default
       uuid = 9b5cd2a9-f8f3-4770-b836-d27b58f0391b
-    [[[child24]]]
+    [[[child12]]]
       type = HPaned
       parent = child1
       order = 2
       position = 1276
       ratio = 0.49980415197806505
-    [[[terminal25]]]
+    [[[terminal13]]]
       type = Terminal
-      parent = child24
+      parent = child12
       order = 0
       profile = default
       uuid = 4e255afc-44a6-4d5f-83a4-ebb6b5b574c9
-    [[[terminal26]]]
+    [[[terminal14]]]
       type = Terminal
-      parent = child24
+      parent = child12
       order = 1
       profile = default
       uuid = e28d702b-3f15-441b-a981-55ea6d7cbd36
-    [[[child27]]]
+    [[[child15]]]
       type = HPaned
       parent = child1
       order = 3
       position = 1276
       ratio = 0.49980415197806505
-    [[[child28]]]
-      type = VPaned
-      parent = child27
-      order = 0
-      position = 680
-      ratio = 0.5003679175864606
-    [[[terminal29]]]
+    [[[terminal16]]]
       type = Terminal
-      parent = child28
+      parent = child15
       order = 0
       profile = default
       uuid = a8d9fe31-9f5b-405f-96ed-13b24a29697d
-    [[[terminal30]]]
+    [[[terminal17]]]
       type = Terminal
-      parent = child28
+      parent = child15
       order = 1
       profile = default
-      uuid = 0b2b35f8-3fd7-47ce-87fc-ba1defbd6613
-    [[[child31]]]
+      uuid = 47505e12-46f7-4d8c-b046-9951e423bc26
+    [[[child18]]]
+      type = HPaned
+      parent = child1
+      order = 4
+      position = 1276
+      ratio = 0.49980415197806505
+    [[[terminal19]]]
+      type = Terminal
+      parent = child18
+      order = 0
+      profile = default
+      uuid = 29b7d385-f17f-4c15-ab94-7ee84cca66a0
+    [[[child20]]]
       type = VPaned
-      parent = child27
+      parent = child18
       order = 1
       position = 680
       ratio = 0.5003679175864606
-    [[[terminal32]]]
+    [[[terminal21]]]
       type = Terminal
-      parent = child31
+      parent = child20
       order = 0
       profile = default
-      uuid = 47505e12-46f7-4d8c-b046-9951e423bc26
-    [[[terminal33]]]
+      uuid = 9173e399-5c47-48df-a813-f8c0a8119c54
+    [[[terminal22]]]
       type = Terminal
-      parent = child31
+      parent = child20
       order = 1
       profile = default
-      uuid = 9473613c-c615-414c-8e01-b00e81f4bf65
+      uuid = 53729d37-57d6-4c9b-8a6c-d2993f435107
 [plugins]
