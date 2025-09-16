@@ -43,3 +43,7 @@
 [submodule "src/realsense_polled_camera"]
 	path = src/realsense_polled_camera
 	url = git@js-er-code.jsc.nasa.gov:np/realsense_polled_camera.git
+[submodule "src/wilbur_cfs_ros_msgs"]
+	path = src/wilbur_cfs_ros_msgs
+	url = git@js-er-code.jsc.nasa.gov:lucci/wilbur_cfs_ros_msgs.git
+	branch = humble-feature/update-nav-messages
