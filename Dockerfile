@@ -111,6 +111,10 @@ RUN colcon metadata add default  \
     https://raw.githubusercontent.com/colcon/colcon-metadata-repository/master/index.yaml && \
     colcon metadata update || true
 
+# Copy in CLR Demo recovery alias
+COPY config/phoebe_alias.sh /home/${USERNAME}/phoebe_alias.sh
+RUN cat /home/${USERNAME}/phoebe_alias.sh >> /home/${USERNAME}/.bashrc
+
 # Fix rosdep permissions and ensure sudo while we're at it
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
