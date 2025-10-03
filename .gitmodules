@@ -47,3 +47,6 @@
 	path = src/wilbur_cfs_ros_msgs
 	url = git@js-er-code.jsc.nasa.gov:lucci/wilbur_cfs_ros_msgs.git
 	branch = humble-feature/update-nav-messages
+[submodule "src/mujoco_ros2_simulation"]
+	path = src/mujoco_ros2_simulation
+	url = git@github.com:NASA-JSC-Robotics/mujoco_ros2_simulation.git
