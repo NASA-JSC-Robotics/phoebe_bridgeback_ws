@@ -47,6 +47,7 @@ repos:
     rev: v0.10.0.1
     hooks:
       - id: shellcheck
+        exclude: ^config/phoebe_alias.sh$ # not a real shell file
 
   # Python hooks
   - repo: https://github.com/asottile/pyupgrade
