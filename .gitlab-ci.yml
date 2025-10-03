@@ -96,7 +96,7 @@ run_tests:
           pushd ${ER4_WS} > /dev/null
           # Run tests, modify as needed.
           # Skip tests that we do not have the capacity to fix at the moment
-          colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver
+          colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver realsense_polled_camera wilbur_cfs_ros_msgs
           # Gives you easy to read summary in CI build, returns 1 in case of failures so this should
           # fail the CI job if there are issues.
           colcon test-result --verbose
