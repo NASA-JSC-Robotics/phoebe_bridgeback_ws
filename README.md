@@ -67,7 +67,7 @@ ros2 launch phoebe_deploy control.launch.py platform:=mock_hardware
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
-### Other Things to Note
+## Other Things to Note
 
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
 This ensure artifacts are persisted even when restarting or recreating the container.
@@ -80,7 +80,6 @@ For more information refer to the [compose specification](docker-compose.yaml).
 
 - Defaults for `colcon build` are set for the user. To change or modify, refer to the [defaults file](config/colcon-defaults.yaml).
 
-- Two samples for GitLab CI for either [git submodules](.gitlab-ci.yml.submodules) or [vcs workspace](gitlab-ci.yml.vcs) are included.
-Depending on your workflow, pick on and move it to `.gitlab-ci.yml` and it should build and push images, and run tests.
-  - *NOTE:* There MUST be a `project.repos` file in the repo root to work with the VCS CI template.
-  - *NOTE:* Images are tagged based on the repo's name/location and either the tag or branch of an MR.
+## Troubleshooting
+
+Common pitfalls and troubleshooting tips are documented in the [troubleshooting guide](./docs/TROUBLESHOOTING.md).

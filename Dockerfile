@@ -1,6 +1,18 @@
 # Set desired ROS distribution, this image currently only supports humble.
 ARG ROS_DISTRO=humble
 
+# This layer grabs package manifests from the src directory for preserving rosdep installs.
+# This can significantly speed up rebuilds for the base package when src contents have changed.
+FROM alpine:latest AS package-manifests
+
+# Copy in the src directory, then remove everything that isn't a manifest or an ignore file.
+COPY src/ /src/
+RUN find /src -type f ! -name "package.xml" ! -name "COLCON_IGNORE" -delete && \
+    find /src -type d -empty -delete
+
+# Throw away for an empty source directory
+RUN mkdir -p /src
+
 # Using the pre-compiled ROS images as the base.
 FROM ros:${ROS_DISTRO} AS er4-dev
 
@@ -56,7 +68,9 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
 WORKDIR  ${ER4_WS}
 RUN mkdir src build install log
-COPY src/ src/
+
+# Copy package manifests for installing rosdeps
+COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
 
 # Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
 RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
@@ -83,6 +97,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp
 
+# Copy in the remainder of the src directory
+COPY src/ src/
 RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 USER ${USERNAME}
@@ -95,7 +111,9 @@ RUN colcon metadata add default  \
     https://raw.githubusercontent.com/colcon/colcon-metadata-repository/master/index.yaml && \
     colcon metadata update || true
 
-COPY config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
+# Copy in CLR Demo recovery alias
+COPY config/phoebe_alias.sh /home/${USERNAME}/phoebe_alias.sh
+RUN cat /home/${USERNAME}/phoebe_alias.sh >> /home/${USERNAME}/.bashrc
 
 # Fix rosdep permissions and ensure sudo while we're at it
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -103,6 +121,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     sudo apt update && \
     . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update --rosdistro ${ROS_DISTRO}
+
+# copy in configs for different features
+COPY --chown=${USERNAME}:${USERNAME} config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
+COPY --chown=${USERNAME}:${USERNAME} config/terminator_config /home/${USERNAME}/.config/terminator/config
 
 # Setup entrypoint and ensure it's added to ~/.bashrc
 COPY scripts/entrypoint.sh /entrypoint.sh

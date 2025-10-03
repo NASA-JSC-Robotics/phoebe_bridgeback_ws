@@ -1,0 +1,156 @@
+[global_config]
+[keybindings]
+  broadcast_off = <Alt>o
+  broadcast_group = <Alt>g
+  broadcast_all = <Alt>a
+[profiles]
+  [[default]]
+    background_color = "#00042a"
+    cursor_color = "#aaaaaa"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:0
+      maximised = True
+      fullscreen = False
+      size = 2560, 1403
+      title = docker_terminator
+      last_active_window = True
+    [[[child1]]]
+      type = Notebook
+      parent = child0
+      order = 0
+      labels = Core, Manip, Nav, Percep, "CFS Commander "
+      last_active_term = 3ed14a9a-904a-49ea-853f-771cfcbded9d, 9b5cd2a9-f8f3-4770-b836-d27b58f0391b, e28d702b-3f15-441b-a981-55ea6d7cbd36, 47505e12-46f7-4d8c-b046-9951e423bc26, 53729d37-57d6-4c9b-8a6c-d2993f435107
+      active_page = 0
+    [[[child2]]]
+      type = HPaned
+      parent = child1
+      order = 0
+      position = 1277
+      ratio = 0.500195848021935
+    [[[child3]]]
+      type = VPaned
+      parent = child2
+      order = 0
+      position = 681
+      ratio = 0.5011037527593819
+    [[[terminal4]]]
+      type = Terminal
+      parent = child3
+      order = 0
+      profile = default
+      uuid = 3ed14a9a-904a-49ea-853f-771cfcbded9d
+    [[[terminal5]]]
+      type = Terminal
+      parent = child3
+      order = 1
+      profile = default
+      uuid = eeeba86c-a9bd-42fb-8d3e-4e7ecacaceb7
+    [[[child6]]]
+      type = VPaned
+      parent = child2
+      order = 1
+      position = 680
+      ratio = 0.5003679175864606
+    [[[terminal7]]]
+      type = Terminal
+      parent = child6
+      order = 0
+      profile = default
+      uuid = f6216c28-9e14-43ef-9bab-2c89ec8c0dd8
+    [[[terminal8]]]
+      type = Terminal
+      parent = child6
+      order = 1
+      profile = default
+      uuid = d48a6d2b-ba79-4eda-a6ec-d20ab7bea85c
+    [[[child9]]]
+      type = HPaned
+      parent = child1
+      order = 1
+      position = 1276
+      ratio = 0.49980415197806505
+    [[[terminal10]]]
+      type = Terminal
+      parent = child9
+      order = 0
+      profile = default
+      uuid = b23738d1-3508-4eaf-8ad7-80bb5b113a83
+    [[[terminal11]]]
+      type = Terminal
+      parent = child9
+      order = 1
+      profile = default
+      uuid = 9b5cd2a9-f8f3-4770-b836-d27b58f0391b
+    [[[child12]]]
+      type = HPaned
+      parent = child1
+      order = 2
+      position = 1276
+      ratio = 0.49980415197806505
+    [[[terminal13]]]
+      type = Terminal
+      parent = child12
+      order = 0
+      profile = default
+      uuid = 4e255afc-44a6-4d5f-83a4-ebb6b5b574c9
+    [[[terminal14]]]
+      type = Terminal
+      parent = child12
+      order = 1
+      profile = default
+      uuid = e28d702b-3f15-441b-a981-55ea6d7cbd36
+    [[[child15]]]
+      type = HPaned
+      parent = child1
+      order = 3
+      position = 1276
+      ratio = 0.49980415197806505
+    [[[terminal16]]]
+      type = Terminal
+      parent = child15
+      order = 0
+      profile = default
+      uuid = a8d9fe31-9f5b-405f-96ed-13b24a29697d
+    [[[terminal17]]]
+      type = Terminal
+      parent = child15
+      order = 1
+      profile = default
+      uuid = 47505e12-46f7-4d8c-b046-9951e423bc26
+    [[[child18]]]
+      type = HPaned
+      parent = child1
+      order = 4
+      position = 1276
+      ratio = 0.49980415197806505
+    [[[terminal19]]]
+      type = Terminal
+      parent = child18
+      order = 0
+      profile = default
+      uuid = 29b7d385-f17f-4c15-ab94-7ee84cca66a0
+    [[[child20]]]
+      type = VPaned
+      parent = child18
+      order = 1
+      position = 680
+      ratio = 0.5003679175864606
+    [[[terminal21]]]
+      type = Terminal
+      parent = child20
+      order = 0
+      profile = default
+      uuid = 9173e399-5c47-48df-a813-f8c0a8119c54
+    [[[terminal22]]]
+      type = Terminal
+      parent = child20
+      order = 1
+      profile = default
+      uuid = 53729d37-57d6-4c9b-8a6c-d2993f435107
+[plugins]
