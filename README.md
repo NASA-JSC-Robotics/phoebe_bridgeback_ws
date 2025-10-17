@@ -61,12 +61,29 @@ To run the things, do the following
 colcon build
 
 # Start Phoebe ros2 control software with mock_hardware
-ros2 launch phoebe_deploy control.launch.py platform:=mock_hardware
+ros2 launch phoebe_deploy control_mock_hardware.launch.py
 
 # start moveit with rviz!
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
+For running things in mujoco, follow these steps
+```bash
+# build the ROS workspace
+colcon build
+
+# Start Phoebe ros2 control software with mujoco sim
+ros2 launch phoebe_mujoco_config phoebe_mujoco.launch.py
+
+# Start the sensors launch file to get odometry processed as it would be on the robot
+ros2 launch phoebe_deploy ridgeback_sensors.launch.py is_sim:=true
+
+# start moveit with rviz!
+ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
+
+# launch nav2
+ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
+```
 ## Other Things to Note
 
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
@@ -79,6 +96,8 @@ This points the bash to keep the history in this folder, which will persist betw
 For more information refer to the [compose specification](docker-compose.yaml).
 
 - Defaults for `colcon build` are set for the user. To change or modify, refer to the [defaults file](config/colcon-defaults.yaml).
+
+- We use [MuJoCo](https://mujoco.readthedocs.io/en/stable/XMLreference.html) for many of our dynamic simulations, so we include installing in the [Dockerfile](./Dockerfile).
 
 ## Troubleshooting
 

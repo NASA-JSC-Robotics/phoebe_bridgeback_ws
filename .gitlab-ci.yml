@@ -57,11 +57,10 @@ build_dev_source:
   dependencies:
     - set-tag
   image:
-    name: js-er-code.jsc.nasa.gov:5005/ci_build/docker_with_nasa_certs:latest
+    name: ${CI_REGISTRY}/ci_build/docker_with_nasa_certs:latest
   before_script:
     - docker info
     - docker login -u gitlab-ci-token -p ${CI_JOB_TOKEN} ${CI_REGISTRY}
-    - echo -e "machine js-er-code.jsc.nasa.gov\nlogin gitlab-ci-token\npassword ${CI_JOB_TOKEN}" > ~/.netrc
   script:
     - DOCKER_BUILDKIT=1 docker build
             --pull
@@ -79,7 +78,7 @@ build_dev_source:
 run_tests:
   stage: test
   image:
-    name: js-er-code.jsc.nasa.gov:5005/ci_build/docker_with_nasa_certs:latest
+    name: ${CI_REGISTRY}/ci_build/docker_with_nasa_certs:latest
   dependencies:
     - set-tag
     - build_dev_source
