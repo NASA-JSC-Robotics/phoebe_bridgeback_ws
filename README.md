@@ -68,6 +68,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
 For running things in mujoco, follow these steps
+
 ```bash
 # build the ROS workspace
 colcon build
@@ -84,6 +85,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 # launch nav2
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
+
 ## Other Things to Note
 
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
