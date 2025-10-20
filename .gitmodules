@@ -1,6 +1,6 @@
 [submodule "src/phoebe_bridgeback"]
 	path = src/phoebe_bridgeback
-	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback.git
+	url = https://github.com/NASA-JSC-Robotics/phoebe_bridgeback.git
 [submodule "src/serial"]
 	path = src/serial
 	url = https://github.com/tylerjw/serial.git
