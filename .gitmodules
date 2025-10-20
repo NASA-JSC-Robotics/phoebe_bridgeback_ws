@@ -31,9 +31,6 @@
 [submodule "src/drt_ur_gui"]
 	path = src/drt_ur_gui
 	url = git@js-er-code.jsc.nasa.gov:imetro/drt_ur_gui.git
-[submodule "src/mecanum_drive_odom_publisher"]
-	path = src/mecanum_drive_odom_publisher
-	url = git@js-er-code.jsc.nasa.gov:ndunkelb/mecanum_drive_odom_publisher.git
 [submodule "src/realsense_polled_camera"]
 	path = src/realsense_polled_camera
 	url = git@js-er-code.jsc.nasa.gov:np/realsense_polled_camera.git
