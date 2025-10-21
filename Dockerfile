@@ -160,7 +160,13 @@ ENTRYPOINT ["/entrypoint.sh"]
 # Source built dev image for automated testing.
 FROM er4-dev AS er4-dev-source
 
-ARG USERNAME
-
 RUN . /opt/ros/${ROS_DISTRO}/setup.bash && \
     colcon build
+
+# Run tests as part of the build to save on runner space
+FROM er4-dev-source AS er4-dev-test
+
+# Skip packages we have not fixed or don't care to fix
+RUN . ${ER4_WS}/install/setup.bash && \
+    colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \
+    colcon test-result --verbose
