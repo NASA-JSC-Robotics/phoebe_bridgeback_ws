@@ -24,7 +24,7 @@
 	url = https://bitbucket.org/traclabs/trac_ik.git
 [submodule "src/drt_ur_gui"]
 	path = src/drt_ur_gui
-	url = git@js-er-code.jsc.nasa.gov:imetro/drt_ur_gui.git
+	url = https://github.com/NASA-JSC-Robotics/drt_ur_gui.git
 [submodule "src/realsense_polled_camera"]
 	path = src/realsense_polled_camera
 	url = https://github.com/NASA-JSC-Robotics/realsense_polled_camera.git
