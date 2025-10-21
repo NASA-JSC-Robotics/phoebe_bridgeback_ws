@@ -49,6 +49,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
           file: Dockerfile
           tags: ${{ env.REPOSITORY_NAME }}:${{ env.TAG }}
           target: er4-dev-source
