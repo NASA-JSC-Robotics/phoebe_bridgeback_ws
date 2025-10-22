@@ -75,7 +75,7 @@ jobs:
             BUILDKIT_INLINE_CACHE=1
       - name: Run tests
         run: |
-          docker load --input /tmp/${{ env.REPOSITORY_NAME }}:${{ env.TAG }}.tar \
+          docker load --input /tmp/${{ env.REPOSITORY_NAME }}:${{ env.TAG }}.tar && \
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
