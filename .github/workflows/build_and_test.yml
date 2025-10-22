@@ -70,12 +70,12 @@ jobs:
           load: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          outputs: type=docker,dest=/tmp/${{ env.REPOSITORY_NAME }}:${{ env.TAG }}.tar
+          outputs: type=docker,dest=/tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar
           build-args: |
             BUILDKIT_INLINE_CACHE=1
       - name: Run tests
         run: |
-          docker load --input /tmp/${{ env.REPOSITORY_NAME }}:${{ env.TAG }}.tar && \
+          docker load --input /tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar && \
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
