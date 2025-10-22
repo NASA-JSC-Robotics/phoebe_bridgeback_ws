@@ -31,12 +31,14 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
-      # Free up space on the runner to make room for larger images
-      # https://github.com/easimon/maximize-build-space
-      - name: Maximize build disk space
-        uses: easimon/maximize-build-space@v10
+      # These images are larger but we can free up some space in the runner image to make room for it.
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@v1.3.1
         with:
-          root-reserve-mb: 20480
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
       - name: Print info
         run: |
           echo "REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}"
