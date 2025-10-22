@@ -59,6 +59,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
       # TODO: Use GHCR or Dockerhub to push images once these are public, for now we have added a layer
       # to the build file to enable testing during the build, rather than loading and running test here.
+      # Additionally, exporting as a tarfile and importing saves space, so we do that rather than load the image.
+      # It would be nice to not have to do those things but unfortunately GHCR is not free.
       - name: Build and load
         uses: docker/build-push-action@v5
         with:
@@ -67,13 +69,15 @@ jobs:
           tags: ${{ env.REPOSITORY_NAME }}:${{ env.TAG }}
           target: er4-dev-source
           push: false
-          load: true
+          load: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          outputs: type=docker,dest=/tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar
           build-args: |
             BUILDKIT_INLINE_CACHE=1
       - name: Run tests
         run: |
+          docker load --input /tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar && \
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
