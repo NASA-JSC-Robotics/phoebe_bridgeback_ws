@@ -35,6 +35,8 @@ jobs:
       # https://github.com/easimon/maximize-build-space
       - name: Maximize build disk space
         uses: easimon/maximize-build-space@v10
+        with:
+          root-reserve-mb: 20480
       - name: Print info
         run: |
           echo "REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}"
