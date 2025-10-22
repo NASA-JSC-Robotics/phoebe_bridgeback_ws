@@ -1,6 +1,13 @@
 # Phoebe Bridgeback Workspace
 
 Docker enabled ROS 2 workspace for building and running applications with the Phoebe Bridgeback robot.
+Phoebe Bridgeback is a dual armed, mobile manipulation platform maintained in the [iMETRO Facility](https://ntrs.nasa.gov/citations/20240013956) at NASA's Johnson Space Center.
+
+The platform includes a Clearpath Ridgeback base, 2x Ewellix column lifts, and 2x UR5e serial manipulators.
+Peripherals include wrist mounted Realses D435 cameras along with Robotiq Hand-E grippers.
+This workspace includes packages for baseline operation of the hardware system, along with a supported kinematic and dynamic simulation built with MuJoCo.
+
+![alt text](./docs/phoebe_mujoco.png "Phoebe Bridgeback Dynamic Simulation")
 
 ## Quick Development Setup
 
@@ -68,6 +75,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
 For running things in mujoco, follow these steps
+
 ```bash
 # build the ROS workspace
 colcon build
@@ -84,6 +92,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 # launch nav2
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
+
 ## Other Things to Note
 
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
