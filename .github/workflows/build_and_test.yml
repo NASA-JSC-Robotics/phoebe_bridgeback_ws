@@ -32,12 +32,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # These images are larger but we can free up some space in the runner image to make room for it.
+      # Some of these are very slow, so only remove what is fast.
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
           tool-cache: false
           android: true
           dotnet: true
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: false
       - name: Print info
         run: |
           echo "REPOSITORY_NAME: ${{ env.REPOSITORY_NAME }}"
