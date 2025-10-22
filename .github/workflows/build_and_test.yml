@@ -67,15 +67,13 @@ jobs:
           tags: ${{ env.REPOSITORY_NAME }}:${{ env.TAG }}
           target: er4-dev-source
           push: false
-          load: false
+          load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          outputs: type=docker,dest=/tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar
           build-args: |
             BUILDKIT_INLINE_CACHE=1
       - name: Run tests
         run: |
-          docker load --input /tmp/${{ env.REPOSITORY_NAME }}_${{ env.TAG }}.tar && \
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
