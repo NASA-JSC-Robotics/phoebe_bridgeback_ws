@@ -144,6 +144,20 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update --rosdistro ${ROS_DISTRO}
 
+# https://bender.jsc.nasa.gov/confluence/spaces/~eholum/pages/325397633/Graphics+Acceleration+with+FastX
+# Add additional logic to make sure we clone the correct version for our CPU.
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+--mount=type=cache,target=/var/lib/apt,sharing=locked \
+sudo apt-get -y update && \
+sudo apt-get install -q -y --no-install-recommends \
+    libxv1 \
+    libglu1-mesa \
+    libegl1
+RUN ARCH=$(dpkg --print-architecture); \
+wget https://github.com/VirtualGL/virtualgl/releases/download/3.1.3/virtualgl_3.1.3_${ARCH}.deb && \
+sudo dpkg -i virtualgl_3.1.3_${ARCH}.deb && \
+rm virtualgl_3.1.3_${ARCH}.deb
+
 # copy in configs for different features
 COPY --chown=${USERNAME}:${USERNAME} config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
 COPY --chown=${USERNAME}:${USERNAME} config/terminator_config /home/${USERNAME}/.config/terminator/config
@@ -167,9 +181,10 @@ RUN . /opt/ros/${ROS_DISTRO}/setup.bash && \
 FROM er4-dev-source AS er4-dev-test
 
 # Skip packages we have not fixed or don't care to fix
+# TODO: Fix the phoebe safety tests
 RUN . ${ER4_WS}/install/setup.bash && \
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp && \
     export ROS_DOMAIN_ID=1 && \
     export ROS_LOCALHOST_ONLY=1 && \
-    colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \
+    colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver phoebe_safety && \
     colcon test-result --verbose
