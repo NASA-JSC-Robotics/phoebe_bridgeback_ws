@@ -36,9 +36,9 @@ jobs:
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
-          tool-cache: false
-          android: true
           dotnet: true
+          tool-cache: false
+          android: false
           haskell: false
           large-packages: false
           docker-images: false
@@ -77,6 +77,6 @@ jobs:
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
-              colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \ &&
+              colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \
               colcon test-result --verbose
             "
