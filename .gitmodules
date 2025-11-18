@@ -40,3 +40,7 @@
 [submodule "src/mujoco_ros2_simulation"]
 	path = src/mujoco_ros2_simulation
 	url = https://github.com/NASA-JSC-Robotics/mujoco_ros2_simulation.git
+[submodule "src/kinematics_interface"]
+	path = src/kinematics_interface
+	url = https://github.com/ros-controls/kinematics_interface.git
+	branch = jazzy
