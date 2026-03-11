@@ -11,7 +11,7 @@ Docker enabled ROS 2 workspace for building and running applications with the Ph
 3) Clone this repo with submodules
 
     ```bash
-    git clone --recursive git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback_ws.git -b humble-feature/full-urdf
+    git clone --recursive https://github.com/NASA-JSC-Robotics/phoebe_bridgeback_ws.git
     cd phoebe_bridgeback_ws
     ```
 
@@ -61,6 +61,7 @@ To run the things, do the following
 colcon build
 
 # Start Phoebe ros2 control software with mock_hardware
+# Note - the imu broadcaster controller will fail to load here, and that is ok.
 ros2 launch phoebe_deploy control_mock_hardware.launch.py
 
 # start moveit with rviz!
