@@ -1,23 +1,20 @@
 [submodule "src/phoebe_bridgeback"]
 	path = src/phoebe_bridgeback
-	url = git@js-er-code.jsc.nasa.gov:imetro/robots/phoebe-bridgeback/phoebe_bridgeback.git
-[submodule "src/ewellix_lift"]
-	path = src/ewellix_lift
-	url = https://github.com/clearpathrobotics/ewellix_lift.git
+	url = https://github.com/NASA-JSC-Robotics/phoebe_bridgeback.git
 [submodule "src/serial"]
 	path = src/serial
-	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/serial.git
-	branch = humble
+	url = https://github.com/tylerjw/serial.git
+	branch = ros2
 [submodule "src/ewellix_lift_kit"]
 	path = src/ewellix_lift_kit
-	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/ewellix_lift_kit.git
+	url = https://github.com/NASA-JSC-Robotics/ewellix_lift_kit.git
 [submodule "src/dextivr_hande"]
 	path = src/dextivr_hande
-	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/dextivr_hande.git
+	url = https://github.com/NASA-JSC-Robotics/dextivr_hande.git
 	branch = humble-devel
 [submodule "src/ros2_robotiq_gripper"]
 	path = src/ros2_robotiq_gripper
-	url = git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/ros2_robotiq_gripper.git
+	url = https://github.com/NASA-JSC-Robotics/ros2_robotiq_gripper.git
 	branch = humble-devel
 [submodule "phoebe_system_config"]
 	path = phoebe_system_config
@@ -30,13 +27,13 @@
 	url = https://bitbucket.org/traclabs/trac_ik.git
 [submodule "src/drt_ur_gui"]
 	path = src/drt_ur_gui
-	url = git@js-er-code.jsc.nasa.gov:imetro/drt_ur_gui.git
+	url = https://github.com/NASA-JSC-Robotics/drt_ur_gui.git
 [submodule "src/mecanum_drive_odom_publisher"]
 	path = src/mecanum_drive_odom_publisher
 	url = git@js-er-code.jsc.nasa.gov:ndunkelb/mecanum_drive_odom_publisher.git
 [submodule "src/realsense_polled_camera"]
 	path = src/realsense_polled_camera
-	url = git@js-er-code.jsc.nasa.gov:np/realsense_polled_camera.git
+	url = https://github.com/NASA-JSC-Robotics/realsense_polled_camera.git
 [submodule "src/mujoco_ros2_simulation"]
 	path = src/mujoco_ros2_simulation
 	url = https://github.com/NASA-JSC-Robotics/mujoco_ros2_simulation.git
