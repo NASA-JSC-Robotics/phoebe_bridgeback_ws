@@ -78,6 +78,6 @@ jobs:
           docker run --rm \
             ${{ env.REPOSITORY_NAME }}:${{ env.TAG }} \
             bash -c "
-              colcon test --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \
+              colcon test --executor sequential --packages-skip clearpath_mecanum_drive_controller robotiq_driver && \
               colcon test-result --verbose
             "
