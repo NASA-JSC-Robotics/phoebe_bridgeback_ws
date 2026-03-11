@@ -1,6 +1,13 @@
 # Phoebe Bridgeback Workspace
 
 Docker enabled ROS 2 workspace for building and running applications with the Phoebe Bridgeback robot.
+Phoebe Bridgeback is a dual armed, mobile manipulation platform maintained in the [iMETRO Facility](https://ntrs.nasa.gov/citations/20240013956) at NASA's Johnson Space Center.
+
+The platform includes a Clearpath Ridgeback base, 2x Ewellix column lifts, and 2x UR5e serial manipulators.
+Peripherals include wrist mounted Realses D435 cameras along with Robotiq Hand-E grippers.
+This workspace includes packages for baseline operation of the hardware system, along with a supported kinematic and dynamic simulation built with MuJoCo.
+
+![alt text](./docs/phoebe_mujoco.png "Phoebe Bridgeback Dynamic Simulation")
 
 ## Quick Development Setup
 
@@ -69,6 +76,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
 For running things in mujoco, follow these steps
+
 ```bash
 # build the ROS workspace
 colcon build
@@ -85,6 +93,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 # launch nav2
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
+
 ## Other Things to Note
 
 - Build logs, compiled artifaces, and the `.ccache` are also mounted in the workspace/user home.
@@ -103,3 +112,21 @@ For more information refer to the [compose specification](docker-compose.yaml).
 ## Troubleshooting
 
 Common pitfalls and troubleshooting tips are documented in the [troubleshooting guide](./docs/TROUBLESHOOTING.md).
+
+## Citation
+
+This project falls under the purview of the iMETRO project.
+If you use this in your own work, please cite the following paper:
+
+```bibtex
+@INPROCEEDINGS{imetro-facility-2025,
+  author={Dunkelberger, Nathan and Sheetz, Emily and Rainen, Connor and Graf, Jodi and Hart, Nikki and Zemler, Emma and Azimi, Shaun},
+  booktitle={2025 22nd International Conference on Ubiquitous Robots (UR)},
+  title={Design of the iMETRO Facility: A Platform for Intravehicular Space Robotics Research},
+  year={2025},
+  volume={},
+  number={},
+  pages={390-397},
+  keywords={NASA;Moon;Seals;Maintenance engineering;Maintenance;Robots;Standards;Open source software;Testing;Logistics},
+  doi={10.1109/UR65550.2025.11077983}}
+```

@@ -160,7 +160,8 @@ ENTRYPOINT ["/entrypoint.sh"]
 # Source built dev image for automated testing.
 FROM er4-dev AS er4-dev-source
 
-ARG USERNAME
+# Default to cyclone for the sake of testing
+ENV RMW_IMPLEMENTATION="rmw_cyclonedds_cpp"
 
 RUN . /opt/ros/${ROS_DISTRO}/setup.bash && \
     colcon build
