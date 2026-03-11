@@ -28,6 +28,6 @@
 [submodule "src/realsense_polled_camera"]
 	path = src/realsense_polled_camera
 	url = https://github.com/NASA-JSC-Robotics/realsense_polled_camera.git
-[submodule "src/mujoco_ros2_simulation"]
-	path = src/mujoco_ros2_simulation
-	url = https://github.com/NASA-JSC-Robotics/mujoco_ros2_simulation.git
+[submodule "src/mujoco_ros2_control"]
+	path = src/mujoco_ros2_control
+	url = https://github.com/ros-controls/mujoco_ros2_control.git
