@@ -8,6 +8,9 @@ Peripherals include wrist mounted Realses D435 cameras along with Robotiq Hand-E
 This workspace includes packages for baseline operation of the hardware system, along with a supported kinematic and dynamic simulation built with MuJoCo.
 
 ![alt text](./docs/phoebe_mujoco.png "Phoebe Bridgeback Dynamic Simulation")
+This workflow has been tested against the `jazzy` ROS distro.
+To change ROS versions, update the `ROS2_DISTRO` variable in your environment.
+Note the `2`! As this is intended to be isolated from your system.
 
 ## Quick Development Setup
 
@@ -92,6 +95,40 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 
 # launch nav2
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
+
+## The Pixi Workflow
+
+We also provide a [pixi/robostack](https://prefix.dev) build for compiling on baremetal in consistent, isolated environments.
+Be sure to install the latest (after 0.65.0) release of the tool.
+The build relies on the [pixi-build-ros](https://prefix-dev.github.io/pixi-build-backends/backends/pixi-build-ros/) backend for compatibility with our ROS projects.
+
+To install and run with pixi:
+
+```bash
+# Install the frozen environment and configure colcon
+pixi install --frozen
+pixi run setup-colcon
+
+# Build and test
+pixi run build
+pixi run test
+
+# Or launch an interactive shell and do things "normally"
+pixi shell
+colcon build
+```
+
+Note that any package we are building from source must be included in [pixi.toml](./pixi.toml).
+This is a bit annoying, but it can be updated using a script to find all `package.xmls` and name them accordingly:
+
+```bash
+# Be sure to ignore env files or otherwise. We only want package.xmls from
+# packages compiled in the workspace.
+find src/ -name package.xml | grep -v '\.pixi/' | while read f; do
+  pkg=$(grep -oP '(?<=<name>)[^<]+' "$f")
+  pkg_key="ros-jazzy-$(echo "$pkg" | tr '_' '-')"
+  echo "$pkg_key = { path = \"./$f\" }"
+done | sort
 ```
 
 ## Other Things to Note

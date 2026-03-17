@@ -1,5 +1,5 @@
-# Set desired ROS distribution, this image currently only supports humble.
-ARG ROS_DISTRO=humble
+# Set desired ROS distribution
+ARG ROS_DISTRO=jazzy
 
 # This layer grabs package manifests from the src directory for preserving rosdep installs.
 # This can significantly speed up rebuilds for the base package when src contents have changed.
@@ -30,6 +30,12 @@ ENV ER4_WS="/home/er4-user/ws"
 # DEBIAN_FRONTEND is set as an ARG instead of ENV variable so it doesn't persist in the image after build
 ARG DEBIAN_FRONTEND=noninteractive
 
+# As of 24.04, many Ubuntu modules will check for FIPS kernels and adjust packages accordingly. This
+# can break in the container, which shares a kernel but does not have FIPS packages installed. So
+# in the running image we ensure that SSL at does not cause problems when downloading or making
+# secure connections during the build.
+ENV OPENSSL_FORCE_FIPS_MODE=0
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
@@ -58,11 +64,11 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
     && useradd -l -u ${USER_UID} -g ${USER_GID} --create-home -m -s /bin/bash -G sudo,adm,dialout,dip,plugdev,video ${USERNAME} \
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     mkdir -p \
-        /home/${USERNAME}/.ccache \
-        /home/${USERNAME}/.colcon \
-        /home/${USERNAME}/.ros \
-        /home/${USERNAME}/.bash \
-        ${ER4_WS}
+    /home/${USERNAME}/.ccache \
+    /home/${USERNAME}/.colcon \
+    /home/${USERNAME}/.ros \
+    /home/${USERNAME}/.bash \
+    ${ER4_WS}
 
 # Setup the install directory and copy the workspace to it.
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
