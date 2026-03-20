@@ -82,7 +82,7 @@ COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
 RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
     -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
     wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
-    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu jammy main" > /etc/apt/sources.list.d/clearpath-latest.list'
+    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu noble main" > /etc/apt/sources.list.d/clearpath-latest.list'
 
 # Install rosdeps
 # Init is unnecessary if using the ROS base image
@@ -116,6 +116,7 @@ RUN CPU_ARCH=$(uname -m); \
     rm "mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz"
 
 # Install MuJoCo specific pip dependencies
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     pip install mujoco obj2mjcf
