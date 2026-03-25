@@ -95,8 +95,8 @@ COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
 # RUN sudo rosdep init && rosdep update --rosdistro ${ROS_DISTRO}
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    source /opt/ros/${ROS_DISTRO}/setup.bash && \
-    apt-get update && \
+    sudo apt update && \
+    . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update && \
     rosdep install -iy --from-paths src
 
