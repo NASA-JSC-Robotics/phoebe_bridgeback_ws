@@ -87,9 +87,6 @@ colcon build
 # Start Phoebe ros2 control software with mujoco sim
 ros2 launch phoebe_mujoco_config phoebe_mujoco.launch.py
 
-# Start the sensors launch file to get odometry processed as it would be on the robot
-ros2 launch phoebe_deploy ridgeback_sensors.launch.py is_sim:=true
-
 # start moveit with rviz!
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 
