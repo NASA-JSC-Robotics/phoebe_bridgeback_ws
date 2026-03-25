@@ -103,23 +103,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
     ros-${ROS_DISTRO}-rmw-fastrtps-cpp
 
-# Configure and install MuJoCo using the defaults for the MuJoCo drivers.
-# We use MuJoCo in many systems so we just install the drivers in the base workspace.
-# The install is CPU dependent, this works with `x86_64` and `arm64` chips, TBD on others.
-ARG MUJOCO_VERSION=3.3.4
-ENV MUJOCO_VERSION=${MUJOCO_VERSION}
-ENV MUJOCO_DIR="/opt/mujoco/mujoco-${MUJOCO_VERSION}"
-RUN mkdir -p ${MUJOCO_DIR} && sudo chown -R ${USERNAME}:${USERNAME} ${MUJOCO_DIR}
-RUN CPU_ARCH=$(uname -m); \
-    wget https://github.com/google-deepmind/mujoco/releases/download/${MUJOCO_VERSION}/mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz && \
-    tar -xzf "mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz" -C $(dirname "${MUJOCO_DIR}") && \
-    rm "mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz"
-
-# Install MuJoCo specific pip dependencies
+# Install nanobind from pip rather than rosdep, and include additional deps for the mujoco conversion process.
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    pip install mujoco obj2mjcf
+    pip3 install nanobind mujoco==3.4.0 obj2mjcf trimesh pycollada
 
 # There's no build for arm64 on linux, so just ignore failures here if that's the case
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
