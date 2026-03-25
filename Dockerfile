@@ -59,7 +59,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     xterm \
     wget
 
-# Add a non-root user with provided user details
+# Add a non-root user with provided user details. Some images have a default `ubuntu` user, so we remove it before adding the
+# new one.
+RUN userdel -r ubuntu 2>/dev/null || true
 RUN groupadd -g ${USER_GID} ${USERNAME} \
     && useradd -l -u ${USER_UID} -g ${USER_GID} --create-home -m -s /bin/bash -G sudo,adm,dialout,dip,plugdev,video ${USERNAME} \
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
@@ -68,7 +70,11 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
     /home/${USERNAME}/.colcon \
     /home/${USERNAME}/.ros \
     /home/${USERNAME}/.bash \
-    ${ER4_WS}
+    ${ER4_WS}/src \
+    ${ER4_WS}/build \
+    ${ER4_WS}/install \
+    ${ER4_WS}/log && \
+    chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 # Setup the install directory and copy the workspace to it.
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
