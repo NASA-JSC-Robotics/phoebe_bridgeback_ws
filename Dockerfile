@@ -76,6 +76,12 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
     ${ER4_WS}/log && \
     chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
+# Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
+RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
+    -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
+    wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
+    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu noble main" > /etc/apt/sources.list.d/clearpath-latest.list'
+
 # Setup the install directory and copy the workspace to it.
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
 USER ${USERNAME}
@@ -83,12 +89,6 @@ WORKDIR  ${ER4_WS}
 
 # Copy package manifests for installing rosdeps
 COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
-
-# Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
-RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
-    -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
-    wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
-    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu noble main" > /etc/apt/sources.list.d/clearpath-latest.list'
 
 # Install rosdeps
 # Init is unnecessary if using the ROS base image
