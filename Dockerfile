@@ -78,8 +78,8 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
 
 # Setup the install directory and copy the workspace to it.
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
+USER ${USERNAME}
 WORKDIR  ${ER4_WS}
-RUN mkdir src build install log
 
 # Copy package manifests for installing rosdeps
 COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
