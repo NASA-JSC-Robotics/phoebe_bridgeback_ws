@@ -103,11 +103,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Install extra ROS deps
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -q -y \
+    sudo apt-get update && \
+    sudo apt-get install -q -y \
     ros-${ROS_DISTRO}-ros2controlcli \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
-    ros-${ROS_DISTRO}-rmw-fastrtps-cpp
+    ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO}-plotjuggler-ros
 
 # Install nanobind from pip rather than rosdep, and include additional deps for the mujoco conversion process.
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
@@ -121,10 +122,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     pip install bpy==4.0.0 --extra-index-url https://download.blender.org/pypi/ || true
 
 # Copy in the remainder of the src directory
-COPY src/ src/
-RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
-
-USER ${USERNAME}
+COPY --chown=${USERNAME}:${USERNAME} src/ src/
 
 # Setup colcon default mixins and add default settings
 RUN colcon mixin add default \
