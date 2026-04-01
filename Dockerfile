@@ -1,5 +1,5 @@
-# Set desired ROS distribution, this image currently only supports humble.
-ARG ROS_DISTRO=humble
+# Set desired ROS distribution
+ARG ROS_DISTRO=jazzy
 
 # This layer grabs package manifests from the src directory for preserving rosdep installs.
 # This can significantly speed up rebuilds for the base package when src contents have changed.
@@ -30,6 +30,12 @@ ENV ER4_WS="/home/er4-user/ws"
 # DEBIAN_FRONTEND is set as an ARG instead of ENV variable so it doesn't persist in the image after build
 ARG DEBIAN_FRONTEND=noninteractive
 
+# As of 24.04, many Ubuntu modules will check for FIPS kernels and adjust packages accordingly. This
+# can break in the container, which shares a kernel but does not have FIPS packages installed. So
+# in the running image we ensure that SSL at does not cause problems when downloading or making
+# secure connections during the build.
+ENV OPENSSL_FORCE_FIPS_MODE=0
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
@@ -53,66 +59,62 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     xterm \
     wget
 
-# Add a non-root user with provided user details
+# Add a non-root user with provided user details. Some images have a default `ubuntu` user, so we remove it before adding the
+# new one.
+RUN userdel -r ubuntu 2>/dev/null || true
 RUN groupadd -g ${USER_GID} ${USERNAME} \
     && useradd -l -u ${USER_UID} -g ${USER_GID} --create-home -m -s /bin/bash -G sudo,adm,dialout,dip,plugdev,video ${USERNAME} \
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     mkdir -p \
-        /home/${USERNAME}/.ccache \
-        /home/${USERNAME}/.colcon \
-        /home/${USERNAME}/.ros \
-        /home/${USERNAME}/.bash \
-        ${ER4_WS}
-
-# Setup the install directory and copy the workspace to it.
-# We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
-WORKDIR  ${ER4_WS}
-RUN mkdir src build install log
-
-# Copy package manifests for installing rosdeps
-COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
+    /home/${USERNAME}/.ccache \
+    /home/${USERNAME}/.colcon \
+    /home/${USERNAME}/.ros \
+    /home/${USERNAME}/.bash \
+    ${ER4_WS}/src \
+    ${ER4_WS}/build \
+    ${ER4_WS}/install \
+    ${ER4_WS}/log && \
+    chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
 
 # Add clearpath rosdeps and apt packages so that we can pull non-ros-standard clearpath ros packages
 RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
     -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
     wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
-    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu jammy main" > /etc/apt/sources.list.d/clearpath-latest.list'
+    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu noble main" > /etc/apt/sources.list.d/clearpath-latest.list'
+
+# Setup the install directory and copy the workspace to it.
+# We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
+USER ${USERNAME}
+WORKDIR  ${ER4_WS}
+
+# Copy package manifests for installing rosdeps
+COPY --chown=${USERNAME}:${USERNAME} --from=package-manifests /src/ ./src
 
 # Install rosdeps
 # Init is unnecessary if using the ROS base image
 # RUN sudo rosdep init && rosdep update --rosdistro ${ROS_DISTRO}
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    source /opt/ros/${ROS_DISTRO}/setup.bash && \
-    apt-get update && \
+    sudo apt update && \
+    . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update && \
     rosdep install -iy --from-paths src
 
 # Install extra ROS deps
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -q -y \
+    sudo apt-get update && \
+    sudo apt-get install -q -y \
     ros-${ROS_DISTRO}-ros2controlcli \
     ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
-    ros-${ROS_DISTRO}-rmw-fastrtps-cpp
+    ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+    ros-${ROS_DISTRO}-plotjuggler-ros
 
-# Configure and install MuJoCo using the defaults for the MuJoCo drivers.
-# We use MuJoCo in many systems so we just install the drivers in the base workspace.
-# The install is CPU dependent, this works with `x86_64` and `arm64` chips, TBD on others.
-ARG MUJOCO_VERSION=3.3.4
-ENV MUJOCO_VERSION=${MUJOCO_VERSION}
-ENV MUJOCO_DIR="/opt/mujoco/mujoco-${MUJOCO_VERSION}"
-RUN mkdir -p ${MUJOCO_DIR} && sudo chown -R ${USERNAME}:${USERNAME} ${MUJOCO_DIR}
-RUN CPU_ARCH=$(uname -m); \
-    wget https://github.com/google-deepmind/mujoco/releases/download/${MUJOCO_VERSION}/mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz && \
-    tar -xzf "mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz" -C $(dirname "${MUJOCO_DIR}") && \
-    rm "mujoco-${MUJOCO_VERSION}-linux-${CPU_ARCH}.tar.gz"
-
-# Install MuJoCo specific pip dependencies
+# Install nanobind from pip rather than rosdep, and include additional deps for the mujoco conversion process.
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    pip install mujoco obj2mjcf
+    pip3 install nanobind mujoco==3.4.0 obj2mjcf trimesh pycollada
 
 # There's no build for arm64 on linux, so just ignore failures here if that's the case
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -120,10 +122,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     pip install bpy==4.0.0 --extra-index-url https://download.blender.org/pypi/ || true
 
 # Copy in the remainder of the src directory
-COPY src/ src/
-RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}
-
-USER ${USERNAME}
+COPY --chown=${USERNAME}:${USERNAME} src/ src/
 
 # Setup colcon default mixins and add default settings
 RUN colcon mixin add default \
