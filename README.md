@@ -78,7 +78,8 @@ ros2 launch phoebe_deploy control_mock_hardware.launch.py
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
-For running things in mujoco, follow these steps
+For running things in mujoco, follow these steps.
+Note that for the `phoebe_mujoco` and `phoebe_moveit` launches, you can use the launch args `left_hand_type:=2f85` and `right_hand_type:=2f85` to switch either or both hands to be robotiq 2f85 grippers isntead of robotiq handes (just make sure those two launch files match).
 
 ```bash
 # build the ROS workspace
@@ -94,6 +95,9 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
 ## The Pixi Workflow
+
+> [!WARNING]
+> The pixi workflow does not work for Phoebe at this time, but it will be left in this README for future development anyways.
 
 We also provide a [pixi/robostack](https://prefix.dev) build for compiling on baremetal in consistent, isolated environments.
 Be sure to install the latest (after 0.65.0) release of the tool.
