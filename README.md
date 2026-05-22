@@ -94,6 +94,7 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 # launch nav2
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
+
 ## The Pixi Workflow
 
 > [!WARNING]
