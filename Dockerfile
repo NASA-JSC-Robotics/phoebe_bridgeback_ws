@@ -143,6 +143,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update --rosdistro ${ROS_DISTRO}
 
+# Manually enable writing to mujoco_vendor's simulate plugin directory.
+# Possible resolution in: https://github.com/pal-robotics/mujoco_vendor/pull/12
+RUN sudo chmod a+rwx /opt/ros/${ROS_DISTRO}/opt/mujoco_vendor/bin/mujoco_plugin/
+
 # copy in configs for different features
 COPY --chown=${USERNAME}:${USERNAME} config/colcon-defaults.yaml /home/${USERNAME}/.colcon/defaults.yaml
 COPY --chown=${USERNAME}:${USERNAME} config/terminator_config /home/${USERNAME}/.config/terminator/config
