@@ -143,6 +143,21 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     . /opt/ros/${ROS_DISTRO}/setup.bash && \
     rosdep update --rosdistro ${ROS_DISTRO}
 
+# Added to support headless accelerated rendering in the container. For more information see
+# https://bender.jsc.nasa.gov/confluence/spaces/~eholum/pages/325397633/Graphics+Acceleration+with+FastX
+# Add additional logic to make sure we clone the correct version for our CPU.
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    sudo apt-get -y update && \
+    sudo apt-get install -q -y --no-install-recommends \
+        libxv1 \
+        libglu1-mesa \
+        libegl1
+RUN ARCH=$(dpkg --print-architecture); \
+    wget https://github.com/VirtualGL/virtualgl/releases/download/3.1.3/virtualgl_3.1.3_${ARCH}.deb && \
+    sudo dpkg -i virtualgl_3.1.3_${ARCH}.deb && \
+    rm virtualgl_3.1.3_${ARCH}.deb
+
 # Manually enable writing to mujoco_vendor's simulate plugin directory.
 # Possible resolution in: https://github.com/pal-robotics/mujoco_vendor/pull/12
 RUN sudo chmod a+rwx /opt/ros/${ROS_DISTRO}/opt/mujoco_vendor/bin/mujoco_plugin/
