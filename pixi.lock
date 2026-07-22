@@ -606,6 +606,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/pybind11-abi-11-hc364b38_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/pybind11-global-3.0.3-pyh648e204_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pycodestyle-2.14.0-pyhd8ed1ab_0.conda
+      - conda: https://prefix.dev/conda-forge/noarch/pycollada-0.9.3-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pycparser-3.0-pyhcf101f3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pydocstyle-6.3.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/pyflakes-3.4.0-pyhd8ed1ab_0.conda
@@ -1630,6 +1631,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/pybind11-abi-11-hc364b38_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/pybind11-global-3.0.3-pyh648e204_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pycodestyle-2.14.0-pyhd8ed1ab_0.conda
+      - conda: https://prefix.dev/conda-forge/noarch/pycollada-0.9.3-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pycparser-3.0-pyhcf101f3_0.conda
       - conda: https://prefix.dev/conda-forge/noarch/pydocstyle-6.3.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/pyflakes-3.4.0-pyhd8ed1ab_0.conda
@@ -21586,6 +21588,20 @@ packages:
   run_exports: {}
   size: 35182
   timestamp: 1750616054854
+- conda: https://prefix.dev/conda-forge/noarch/pycollada-0.9.3-pyhd8ed1ab_0.conda
+  sha256: 1743c3be740be009ee7b9e6f32ed12524537d437ec701fd0e8fabfa7a4868b48
+  md5: edd875ef7cbf171d45b9e735c216dbf7
+  depends:
+  - numpy
+  - python >=3.10
+  - python-dateutil >=2.2
+  license: BSD
+  license_family: BSD
+  purls:
+  - pkg:pypi/pycollada?source=hash-mapping
+  run_exports: {}
+  size: 93525
+  timestamp: 1769429399258
 - conda: https://prefix.dev/conda-forge/noarch/pycparser-3.0-pyhcf101f3_0.conda
   sha256: e27e0473fc6723311a0bd48b89b616fa1b996a2f7a2b555338cbbcfb9c640568
   md5: 9c5491066224083c41b6d5635ed7107b
