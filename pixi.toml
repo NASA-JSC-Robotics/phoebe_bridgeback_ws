@@ -1,6 +1,6 @@
 [workspace]
 # Update the workspace name accordingly
-name = "ros_docker_ws"
+name = "phoebe_bridgeback_ws"
 authors = ["Erik Holum <erik.holum@nasa.gov>"]
 channels = [
   "https://prefix.dev/conda-forge",
@@ -8,7 +8,6 @@ channels = [
 ]
 platforms = ["linux-aarch64", "linux-64"]
 version = "0.1.0"
-preview = ["pixi-build"]
 
 [activation]
 # Sources the workspace install, if present
@@ -45,9 +44,59 @@ colcon-common-extensions = ">=0.3.0,<0.4"
 colcon-mixin = ">=0.2.3,<0.3"
 pip = "*"
 
-# Not necessary for building, but for tests/running in isolated environments
-ros-jazzy-ros-base = "*"
+librealsense = ">=2.57.7,<3"
+libserial = ">=1.0.0,<2"
+openmpi = ">=5.0.10,<6"
+pyserial = ">=3.5,<4"
+pytest = "<9.1.0"  # Avoids issues with plugin loading in colcon test
+urdf-parser-py = ">=0.0.4,<0.0.5"
 
-[dev]
-# Add path dependencies to any sources in the workspace, for example:
-# ros-jazzy-clr-deploy = { path = "./src/chonkur_l_raile/clr_deploy/package.xml" }
+# ROS dependencies
+ros-jazzy-ros-base = "*"
+ros-jazzy-backward-ros = "*"
+ros-jazzy-cv-bridge = "*"
+ros-jazzy-clearpath-platform-description = "*"
+ros-jazzy-control-toolbox = "*"
+ros-jazzy-controller-interface = "*"
+ros-jazzy-controller-manager = "*"
+ros-jazzy-depth-image-proc = "*"
+ros-jazzy-force-torque-sensor-broadcaster = "*"
+ros-jazzy-forward-command-controller = "*"
+ros-jazzy-gripper-controllers = "*"
+ros-jazzy-image-transport = "*"
+ros-jazzy-imu-sensor-broadcaster = "*"
+ros-jazzy-interactive-marker-twist-server = "*"
+ros-jazzy-joint-state-broadcaster = "*"
+ros-jazzy-joint-trajectory-controller = "*"
+ros-jazzy-joy-linux = "*"
+ros-jazzy-mecanum-drive-controller = "*"
+ros-jazzy-moveit-configs-utils = "*"
+ros-jazzy-moveit-core = "*"
+ros-jazzy-moveit-msgs = "*"
+ros-jazzy-moveit-planners-chomp = "*"
+ros-jazzy-moveit-planners-ompl = "*"
+ros-jazzy-moveit-planners-stomp = "*"
+ros-jazzy-moveit-ros-control-interface = "*"
+ros-jazzy-moveit-ros-planning-interface = "*"
+ros-jazzy-moveit-ros-visualization = "*"
+ros-jazzy-moveit-visual-tools = "*"
+ros-jazzy-mujoco-vendor = "*"
+ros-jazzy-nav2-bringup = "*"
+ros-jazzy-nav2-common = "*"
+ros-jazzy-pilz-industrial-motion-planner = "*"
+ros-jazzy-trac-ik-kinematics-plugin = "*"
+ros-jazzy-pcl-ros = "*"
+ros-jazzy-pose-broadcaster = "*"
+ros-jazzy-python-qt-binding = "*"
+ros-jazzy-realsense2-description = "*"
+ros-jazzy-ros2controlcli = "*"
+ros-jazzy-ros2-control-cmake = "*"
+ros-jazzy-ros2-control-test-assets = "*"
+ros-jazzy-slam-toolbox = "*"
+ros-jazzy-teleop-twist-joy = "*"
+ros-jazzy-transmission-interface = "*"
+ros-jazzy-twist-mux = "*"
+ros-jazzy-ur-description = "*"
+
+[pypi-dependencies]
+obj2mjcf = ">=0.0.25, <0.0.26"
