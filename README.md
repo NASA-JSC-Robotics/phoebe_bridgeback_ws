@@ -98,7 +98,7 @@ ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ## The Pixi Workflow
 
 > [!WARNING]
-> The pixi workflow is experimental and intended to development use only.
+> The pixi workflow is experimental and intended for development use only.
 
 We also provide a [pixi/robostack](https://prefix.dev) build for compiling on baremetal in consistent, isolated environments.
 Be sure to install the latest (after 0.65.0) release of the tool.
