@@ -50,6 +50,7 @@ openmpi = ">=5.0.10,<6"
 pyserial = ">=3.5,<4"
 pytest = "<9.1.0"  # Avoids issues with plugin loading in colcon test
 urdf-parser-py = ">=0.0.4,<0.0.5"
+pycollada = ">=0.9.3,<0.10"
 
 # ROS dependencies
 ros-jazzy-ros-base = "*"
