@@ -43,6 +43,7 @@ mold = ">=2.40.4,<3"
 colcon-common-extensions = ">=0.3.0,<0.4"
 colcon-mixin = ">=0.2.3,<0.3"
 pip = "*"
+setuptools = "<80"  # Newer versions break colcon symlink installs
 
 librealsense = ">=2.57.7,<3"
 libserial = ">=1.0.0,<2"
