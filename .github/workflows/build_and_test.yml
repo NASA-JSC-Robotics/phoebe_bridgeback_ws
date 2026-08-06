@@ -59,52 +59,6 @@ jobs:
           docker run --rm \
             ${{ steps.meta.outputs.tags }} \
             bash -c "
-              colcon test --executor sequential --packages-skip robotiq_driver && \
+              colcon test --executor sequential --packages-skip robotiq_driver clearpath_mecanum_drive_controller && \
               colcon test-result --verbose
-            "
-
-  pixi_jazzy_build_and_test:
-    env:
-      CCACHE_DIR: ${{ github.workspace }}/.ccache
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v6
-        with:
-          submodules: recursive
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Build Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: docker/Dockerfile.pixi
-          push: false
-          load: true
-          tags: ${{ github.event.repository.name }}_pixi:ci
-          cache-from: type=gha,scope=pixi-${{ github.event.repository.name }}
-          cache-to: type=gha,mode=max,scope=pixi-${{ github.event.repository.name }}
-      - name: Cache ccache
-        uses: actions/cache@v5
-        with:
-          path: |
-            ${{ env.CCACHE_DIR }}
-          key: ${{ runner.os }}-ccache-${{ github.head_ref || github.ref_name }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-main
-            ${{ runner.os }}-ccache-
-      # Run pixi jobs, and ensure the cache is world readable.
-      # TODO: We don't really need to test... this is mostly for sanity checking
-      - name: Build and test in container
-        run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/workspace \
-            -v ${{ github.workspace }}/.ccache:/workspace/.ccache \
-            -w /workspace \
-            -e CCACHE_DIR=/workspace/.ccache \
-            ${{ github.event.repository.name }}_pixi:ci \
-            bash -c "
-              pixi run setup-colcon && \
-              pixi run build && \
-              chmod -R a+rwX /workspace/.ccache
             "

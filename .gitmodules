@@ -25,3 +25,9 @@
 [submodule "src/mujoco_ros2_control"]
 	path = src/mujoco_ros2_control
 	url = https://github.com/ros-controls/mujoco_ros2_control.git
+[submodule "src/clearpath_mecanum_drive_controller"]
+	path = src/clearpath_mecanum_drive_controller
+	url = https://github.com/clearpathrobotics/clearpath_mecanum_drive_controller.git
+[submodule "src/trac_ik"]
+	path = src/trac_ik
+	url = https://bitbucket.org/traclabs/trac_ik.git

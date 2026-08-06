@@ -1,5 +1,5 @@
 # Set desired ROS distribution
-ARG ROS_DISTRO=jazzy
+ARG ROS_DISTRO=humble
 
 # This layer grabs package manifests from the src directory for preserving rosdep installs.
 # This can significantly speed up rebuilds for the base package when src contents have changed.
@@ -80,7 +80,7 @@ RUN groupadd -g ${USER_GID} ${USERNAME} \
 RUN wget -q https://raw.githubusercontent.com/clearpathrobotics/public-rosdistro/master/rosdep/50-clearpath.list \
     -O /etc/ros/rosdep/sources.list.d/50-clearpath.list && \
     wget https://packages.clearpathrobotics.com/public.key -O - | sudo apt-key add - && \
-    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu noble main" > /etc/apt/sources.list.d/clearpath-latest.list'
+    sudo bash -c 'echo "deb https://packages.clearpathrobotics.com/stable/ubuntu jammy main" > /etc/apt/sources.list.d/clearpath-latest.list'
 
 # Setup the install directory and copy the workspace to it.
 # We could alternatively copy package manifests to preserve the layer cache if the build duration becomes too onerous.
@@ -114,7 +114,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    pip3 install nanobind mujoco==3.4.0 obj2mjcf trimesh pycollada
+    pip3 install nanobind mujoco==3.4.0 obj2mjcf 'trimesh<4.0.0' pycollada
 
 # There's no build for arm64 on linux, so just ignore failures here if that's the case
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
