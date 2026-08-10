@@ -8,6 +8,9 @@ Peripherals include wrist mounted Realses D435 cameras along with Robotiq Hand-E
 This workspace includes packages for baseline operation of the hardware system, along with a supported kinematic and dynamic simulation built with MuJoCo.
 
 ![alt text](./docs/phoebe_mujoco.png "Phoebe Bridgeback Dynamic Simulation")
+This workflow has been tested against the `humble` ROS distro.
+To change ROS versions, update the `ROS2_DISTRO` variable in your environment.
+Note the `2`! As this is intended to be isolated from your system.
 
 ## Quick Development Setup
 
@@ -75,7 +78,8 @@ ros2 launch phoebe_deploy control_mock_hardware.launch.py
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py
 ```
 
-For running things in mujoco, follow these steps
+For running things in mujoco, follow these steps.
+Note that for the `phoebe_mujoco` and `phoebe_moveit` launches, you can use the launch args `left_hand_type:=2f85` and `right_hand_type:=2f85` to switch either or both hands to be robotiq 2f85 grippers instead of robotiq handes (just make sure those two launch files match).
 
 ```bash
 # build the ROS workspace
@@ -83,9 +87,6 @@ colcon build
 
 # Start Phoebe ros2 control software with mujoco sim
 ros2 launch phoebe_mujoco_config phoebe_mujoco.launch.py
-
-# Start the sensors launch file to get odometry processed as it would be on the robot
-ros2 launch phoebe_deploy ridgeback_sensors.launch.py is_sim:=true
 
 # start moveit with rviz!
 ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true

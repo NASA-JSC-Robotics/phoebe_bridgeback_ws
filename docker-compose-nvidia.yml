@@ -6,6 +6,9 @@ services:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
+      # For remote graphics acceleration, no effect if not using VGL
+      - VGL_DISPLAY=:0
+      - VGL_COMPRESS=proxy
     deploy:
       resources:
         reservations:
