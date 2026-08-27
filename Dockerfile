@@ -114,12 +114,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    pip3 install nanobind mujoco==3.4.0 obj2mjcf trimesh pycollada
-
-# There's no build for arm64 on linux, so just ignore failures here if that's the case
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    pip install bpy==4.0.0 --extra-index-url https://download.blender.org/pypi/ || true
+    pip3 install \
+        mujoco==3.12.0 \
+        nanobind \
+        obj2mjcf \
+        trimesh \
+        pycollada
 
 # Copy in the remainder of the src directory
 COPY --chown=${USERNAME}:${USERNAME} src/ src/
