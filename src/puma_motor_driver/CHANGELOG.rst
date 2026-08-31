@@ -1,0 +1,245 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package puma_motor_driver
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.1.0 (2025-01-15)
+------------------
+
+2.9.6 (2026-08-13)
+------------------
+
+2.9.5 (2026-08-07)
+------------------
+
+2.9.4 (2026-07-17)
+------------------
+
+2.9.3 (2026-05-21)
+------------------
+
+2.9.2 (2026-04-14)
+------------------
+
+2.9.1 (2026-02-11)
+------------------
+
+2.9.0 (2026-02-11)
+------------------
+* Fix: CMake Verision and CI (`#299 <https://github.com/clearpathrobotics/clearpath_robot/issues/299>`_)
+  * Updated cmake version to 3.20
+  * Switch action to run on container
+  * Update repos update action version
+  * Increase test timeout
+* Contributors: luis-camero
+
+2.8.6 (2026-01-20)
+------------------
+
+2.8.5 (2026-01-19)
+------------------
+* CORE-36182: [puma_motor_driver] Port to can_hardware socketcan driver (`#286 <https://github.com/clearpathrobotics/clearpath_robot/issues/286>`_)
+  * CORE-36182: [puma_motor_driver] Port to can_hardware socketcan driver
+  * misc clean up
+* Contributors: Natesh Narain
+
+2.8.4 (2025-11-13)
+------------------
+
+2.8.3 (2025-11-10)
+------------------
+
+2.8.2 (2025-10-28)
+------------------
+
+2.8.1 (2025-10-23)
+------------------
+
+2.8.0 (2025-10-23)
+------------------
+* Add additional Puma diagnostics (`#270 <https://github.com/clearpathrobotics/clearpath_robot/issues/270>`_)
+* Contributors: Chris Iverach-Brereton
+
+2.7.2 (2025-09-18)
+------------------
+
+2.7.1 (2025-09-16)
+------------------
+
+2.7.0 (2025-08-25)
+------------------
+
+2.6.3 (2025-08-18)
+------------------
+
+2.6.2 (2025-07-15)
+------------------
+
+2.6.1 (2025-07-04)
+------------------
+
+2.6.0 (2025-07-04)
+------------------
+
+2.5.1 (2025-06-17)
+------------------
+
+2.5.0 (2025-05-29)
+------------------
+
+2.4.1 (2025-05-20)
+------------------
+
+2.4.0 (2025-04-30)
+------------------
+
+2.3.3 (2025-04-17)
+------------------
+
+2.3.2 (2025-04-16)
+------------------
+* Fixed depend version.
+* Contributors: Tony Baltovski
+
+2.3.1 (2025-04-14)
+------------------
+
+2.3.0 (2025-04-11)
+------------------
+* Reduced feedback frequency to 20hz (`#195 <https://github.com/clearpathrobotics/clearpath_robot/issues/195>`_)
+* Jazzy dingo and ridgeback fixes (`#169 <https://github.com/clearpathrobotics/clearpath_robot/issues/169>`_)
+* Contributors: Roni Kreinin
+
+2.2.4 (2025-04-07)
+------------------
+
+2.2.3 (2025-03-20)
+------------------
+
+2.2.2 (2025-03-17)
+------------------
+
+2.2.1 (2025-03-12)
+------------------
+
+2.2.0 (2025-03-11)
+------------------
+* [clearpath_motor_drivers/puma_motor_driver] Linting fix.
+* [clearpath_motor_drivers/puma_motor_driver] Fixed copy size.
+* Contributors: Tony Baltovski
+
+2.1.2 (2025-02-28)
+------------------
+
+2.1.1 (2025-02-06)
+------------------
+
+2.1.0 (2025-01-31)
+------------------
+
+2.0.4 (2025-01-22)
+------------------
+
+2.0.3 (2025-01-17)
+------------------
+
+2.0.2 (2025-01-17)
+------------------
+
+2.0.1 (2025-01-17)
+------------------
+
+2.0.0 (2025-01-17)
+------------------
+* 1.1.0
+* Changes.
+* Add clearpath_motor_drivers, puma_motor_driver
+* Contributors: Luis Camero, Tony Baltovski
+
+1.0.1 (2024-11-28)
+------------------
+
+1.0.0 (2024-11-26)
+------------------
+* Added minimum version.
+* Add clearpath_motor_drivers, puma_motor_driver
+* Contributors: Luis Camero, Tony Baltovski
+
+* Added minimum version.
+* Merge pull request `#103 <https://github.com/clearpathrobotics/clearpath_robot/issues/103>`_ from clearpathrobotics/humble-1.0RC
+  Humble 1.0 RC
+* Merge pull request `#104 <https://github.com/clearpathrobotics/clearpath_robot/issues/104>`_ from clearpathrobotics/feature/reorganization
+  Package Re-organization
+* Add clearpath_motor_drivers, puma_motor_driver
+* Contributors: Luis Camero, Tony Baltovski, luis-camero
+
+0.3.2 (2024-10-04)
+------------------
+
+0.2.15 (2024-08-12)
+-------------------
+
+0.2.14 (2024-08-08)
+-------------------
+
+0.2.13 (2024-07-30)
+-------------------
+
+0.2.12 (2024-07-22)
+-------------------
+
+0.2.11 (2024-05-28)
+-------------------
+
+0.2.10 (2024-05-16 17:09)
+-------------------------
+
+0.2.9 (2024-05-16 12:19)
+------------------------
+
+0.2.8 (2024-05-14)
+------------------
+
+0.2.7 (2024-04-10)
+------------------
+
+0.2.6 (2024-04-08)
+------------------
+
+0.2.5 (2024-03-07)
+------------------
+
+0.2.4 (2024-01-19)
+------------------
+
+0.2.3 (2024-01-18)
+------------------
+
+0.2.2 (2024-01-10)
+------------------
+
+0.2.1 (2023-12-18)
+------------------
+
+0.2.0 (2023-12-13)
+------------------
+
+0.1.3 (2023-10-04)
+------------------
+
+0.1.2 (2023-09-27)
+------------------
+
+0.1.1 (2023-09-11)
+------------------
+
+0.1.0 (2023-08-31)
+------------------
+
+0.0.3 (2023-08-15)
+------------------
+
+0.0.2 (2023-07-25)
+------------------
+
+0.0.1 (2023-07-20)
+------------------
