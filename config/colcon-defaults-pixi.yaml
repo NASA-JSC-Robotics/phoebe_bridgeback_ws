@@ -1,0 +1,14 @@
+build:
+  symlink-install: true
+  mixin:
+    - rel-with-deb-info
+    - build-testing-on
+    - ccache
+    - compile-commands
+  packages-ignore:
+    # Clearpath apt repos are not available on RoboStack, so we must ignore
+    # building packages that depend on them to avoid errors.
+    - puma_motor_driver
+test:
+  event-handlers:
+    - console_direct+
