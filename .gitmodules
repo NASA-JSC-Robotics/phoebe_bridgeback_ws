@@ -25,3 +25,9 @@
 [submodule "src/mujoco_ros2_control"]
 	path = src/mujoco_ros2_control
 	url = https://github.com/ros-controls/mujoco_ros2_control.git
+[submodule "src/phoebe_moveit_config"]
+	path = src/phoebe_moveit_config
+	url = https://github.com/NASA-JSC-Robotics/phoebe_moveit_config.git
+[submodule "src/phoebe_nav2_config"]
+	path = src/phoebe_nav2_config
+	url = https://github.com/NASA-JSC-Robotics/phoebe_nav2_config.git
