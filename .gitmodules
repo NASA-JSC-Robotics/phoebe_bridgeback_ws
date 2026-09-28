@@ -31,3 +31,6 @@
 [submodule "src/phoebe_nav2_config"]
 	path = src/phoebe_nav2_config
 	url = https://github.com/NASA-JSC-Robotics/phoebe_nav2_config.git
+[submodule "src/phoebe_eznav_config"]
+	path = src/phoebe_eznav_config
+	url = https://github.com/eholum/phoebe_eznav_config.git
