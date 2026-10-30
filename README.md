@@ -95,6 +95,8 @@ ros2 launch phoebe_moveit_config phoebe_moveit.launch.py use_sim_time:=true
 ros2 launch phoebe_nav2_config phoebe_nav.launch.py use_sim_time:=true
 ```
 
+If the sim was launched with `magic_carpet:=true`, pass `magic_carpet:=true` to the nav launch as well.
+
 > [!IMPORTANT]
 > Phoebe's MuJoCo simulation has many caveats, and we recommend referring to the [README](https://github.com/NASA-JSC-Robotics/phoebe_bridgeback/blob/jazzy-devel/phoebe_mujoco_config/README.md) for more information.
 
